@@ -45,18 +45,18 @@ int main(void) {
 	// 	t += dlt;
 	// }
 	
-	// //フーリエ変換
+	//フーリエ変換
 	// for (int i=0; i<N; i++)
 	// {
 	// 	printf("%d %f\n", i, creal(c[i]));
 	// }
 	// printf("\n");
 	
-	// for (int i=0; i<N; i++)
-	// {
-	// 	printf("%d %f\n", i, cimag(c[i]));
-	// }
-	// printf("\n");
+	for (int i=0; i<N; i++)
+	{
+		printf("%d %f\n", i, cimag(c[i]));
+	}
+	printf("\n");
 	
 	// //フーリエ逆変換
 	// t = 0;

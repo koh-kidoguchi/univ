@@ -3,11 +3,11 @@
 
 #define N 80  //変数
 #define L 1.0
-#define j 4.0
-#define u 2.0  //変数
+#define j 4  //変数
+#define u 100.0  
 #define PI 3.1415926535897932384626
 #define A 1.0
-#define tstep 100  //変数
+#define tstep 30000  //変数
 #define k 1
 
 int main() {
@@ -15,10 +15,12 @@ int main() {
 			f[3*N+2],
 			fn[3*N+2],
 			dx = (double) 1.0/N,
-			dt = 0.00001,
+			dt = 0.000001,
 			min;
 	int		i,
-			n;
+			n,
+			minI,
+			firstMinI;
 
 	
 	for(i=0; i<=3*N+1; i++) {
@@ -29,11 +31,26 @@ int main() {
 	for (i=0; i<=3*N+1; i++) {
 		f[i] = A * cos(2*PI*j*x[i]/L);
 	}
-	min = 1;
+
+	minI = 0;
 
 	//ステップを進めていく
 	for (n=0; n<tstep; n++) {
-		min += 1;
+		
+		min = f[minI];
+
+		for (i=minI; i<=3*N+1; i++) {
+
+			if (f[i+1] < f[i]) {				
+				min = f[i+1];
+				minI = i+1;
+				if (n==0) {
+					firstMinI = minI;
+				}
+			} else {
+				break;
+			}
+		}		
 
 		for (i=1; i<=3*N; i++) {
 			fn[i] = f[i] + (k / (dx*dx) * (f[i+1] - 2.0*f[i] + f[i-1]) - u / (2*dx) * (f[i+1] - f[i-1])) * dt;
@@ -44,14 +61,12 @@ int main() {
 			f[i] = fn[i];
 		}
 
-
-		for (i=0; i<=3*N+1; i++) {
-			if (fn[i] < min) {
-				min = fn[i];
-			}
-
-			if (fn[i] )
+		if (n % 1000 == 0) {
+			printf("%f %f\n", n*dt, (minI-firstMinI)*dx);
 		}
-		printf("%d %f\n", n, (double)i/N);
 	}
+
+	// for (i=0; i<2*N; i++) {
+	// 	printf("%f %f\n", i*dx, fn[i]);
+	// }
 }
