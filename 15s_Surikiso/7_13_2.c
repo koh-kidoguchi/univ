@@ -60,10 +60,6 @@ int main() {
 		for (i=0; i<=3*N+1; i++) {
 			f[i] = fn[i];
 		}
-
-		// if (n % 1000 == 0) {
-		// 	printf("%f %f\n", n*dt, -f[minI]);
-		// }
 	}
 
 	for (i=0; i<2*N; i++) {

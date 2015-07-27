@@ -65,8 +65,4 @@ int main() {
 			printf("%f %f\n", n*dt, (minI-firstMinI)*dx);
 		}
 	}
-
-	// for (i=0; i<2*N; i++) {
-	// 	printf("%f %f\n", i*dx, fn[i]);
-	// }
 }
